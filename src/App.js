@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Coins from "./components/Coins";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [coins, setCoins] = useState([]);
@@ -19,9 +20,12 @@ const App = () => {
       });
   }, []);
 
-  return <>
-  <Coins coins={coins}/>
-  </>;
+  return (
+    <>
+      <Navbar />
+      <Coins coins={coins} />
+    </>
+  );
 };
 
 export default App;
