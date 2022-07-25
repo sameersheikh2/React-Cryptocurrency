@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Coins from "./components/Coins";
 import Navbar from "./components/Navbar";
+import Coin from "./routes/Coin";
+
 
 const App = () => {
   const [coins, setCoins] = useState([]);
@@ -14,7 +17,6 @@ const App = () => {
       .get(url)
       .then((response) => {
         setCoins(response.data);
-        console.log(response.data[0])
       })
       .catch((error) => {
         console.log(error);
@@ -24,7 +26,12 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Coins coins={coins} />
+      <Routes>
+        <Route path="/" exact element={<Coins coins={coins} />} />
+        <Route path="/coin" element={<Coin/>}>
+          <Route path=":coinId" element={<Coin/>} />
+        </Route>
+      </Routes>
     </>
   );
 };
